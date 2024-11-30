@@ -12,12 +12,12 @@ typedef struct kexpr_s kexpr_t;
 #define KEE_UNRP    0x04 // unmatched right parentheses
 #define KEE_UNOP    0x08 // unknown operators
 #define KEE_FUNC    0x10 // wrong function syntax
-#define KEE_ARG     0x20
+#define KEE_ARG     0x20 // wrong number of arguments
 #define KEE_NUM     0x40 // fail to parse a number
 
 // Evaluation errors
-#define KEE_UNFUNC  0x40 // undefined function
-#define KEE_UNVAR   0x80 // unassigned variable
+#define KEE_UNFUNC  0x80 // undefined function
+#define KEE_UNVAR   0x100 // unassigned variable
 
 // Return type
 #define KEV_REAL  1

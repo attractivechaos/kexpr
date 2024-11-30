@@ -150,7 +150,7 @@ static void ke_op_KEO_LNOT(ke1_t *p, ke1_t *q) { p->i = !p->i; p->r = (double)p-
 static void ke_op_KEO_POS(ke1_t *p, ke1_t *q)  { } // do nothing
 static void ke_op_KEO_NEG(ke1_t *p, ke1_t *q)  { p->i = -p->i, p->r = -p->r; }
 
-static void ke_func1_abs(ke1_t *p, ke1_t *q) { if (p->vtype == KEV_INT) p->i = abs(p->i), p->r = (double)p->i; else p->r = fabs(p->r), p->i = (int64_t)(p->r + .5); }
+static void ke_func1_abs(ke1_t *p, ke1_t *q) { if (p->vtype == KEV_INT) p->i = llabs((long long)p->i), p->r = (double)p->i; else p->r = fabs(p->r), p->i = (int64_t)(p->r + .5); }
 
 /**********
  * Parser *
@@ -541,15 +541,14 @@ void ke_print(const kexpr_t *ke)
 
 int main(int argc, char *argv[])
 {
-	int c, err, to_print = 0, is_int = 0;
+	int c, err, to_print = 0;
 	kexpr_t *ke;
 
-	while ((c = getopt(argc, argv, "pi")) >= 0) {
+	while ((c = getopt(argc, argv, "p")) >= 0) {
 		if (c == 'p') to_print = 1;
-		else if (c == 'i') is_int = 1;
 	}
 	if (optind == argc) {
-		fprintf(stderr, "Usage: %s [-pi] <expr>\n", argv[0]);
+		fprintf(stderr, "Usage: %s [-p] <expr>\n", argv[0]);
 		return 1;
 	}
 	ke = ke_parse(argv[optind], &err);
