@@ -25,3 +25,17 @@ The following examples cause parse errors:
 ./kexpr "5*exp()"
 ./kexpr "5*exp(4,5)"
 ```
+
+An example C program to use the library:
+```c
+// compile with: gcc -O2 this-prog.c kexpr.c
+#include <stdio.h>
+#include "kexpr.h"
+int main(void) {
+  int err; // error code returned to this variable
+  kexpr_t *e = ke_parse("2+3*x", &err); // parse expression
+  ke_set_real(e, "x", 5); // set the value of variable "x"
+  printf("%f\n", ke_eval_real(e, &err)); // output 17
+  return 0;
+}
+```
