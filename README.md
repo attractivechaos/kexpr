@@ -1,8 +1,8 @@
-Kexpr is a lightweight two-file library for parsing math expressions. It
+Kexpr is a lightweight two-file library for parsing and evaluating math expressions. It
 supports common math functions and works with variables. This library was
 developed in 2015 as part of the klib library and is now separated into this
-repo. Some of the design choices may be questionable and error checking is not
-very robust, but the library is largely usable.
+repo. Some of the design choices at the time may be questionable and error checking is not
+thorough, but the library is largely usable.
 
 To use kexpr as a library, you may copy both `kexpr.h` and `kexpr.c` to your
 own source code tree and call functions in the header file. Kexpr also comes
